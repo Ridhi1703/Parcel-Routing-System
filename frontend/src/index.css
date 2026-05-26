@@ -1,0 +1,110 @@
+/* ── Reset & Base ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* ── Light theme (default) ── */
+:root {
+  /* Brand — Indigo */
+  --indigo-50:  #eef2ff;
+  --indigo-100: #e0e7ff;
+  --indigo-200: #c7d2fe;
+  --indigo-600: #4f46e5;
+  --indigo-700: #4338ca;
+
+  /* Theme tokens */
+  --bg-app:        #f8fafc;
+  --bg-card:       #ffffff;
+  --bg-sidebar:    #eef2ff;
+  --bg-input:      #ffffff;
+  --bg-row-hover:  #f8fafc;
+  --bg-tag:        #f1f5f9;
+
+  --border:        #e2e8f0;
+  --border-inner:  #f1f5f9;
+  --border-sidebar:#e0e7ff;
+
+  --text-heading:  #0f172a;
+  --text-base:     #1e293b;
+  --text-body:     #334155;
+  --text-nav:      #475569;
+  --text-secondary:#64748b;
+  --text-muted:    #94a3b8;
+
+  --primary:       #4f46e5;
+  --primary-hover: #4338ca;
+  --primary-light: #eef2ff;
+  --primary-border:#c7d2fe;
+
+  --font-ui:   system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: ui-monospace, "Courier New", monospace;
+
+  /* Status */
+  --status-routed-bg:   #dcfce7; --status-routed-text:   #15803d;
+  --status-hold-bg:     #fef9c3; --status-hold-text:     #a16207;
+  --status-failed-bg:   #fee2e2; --status-failed-text:   #b91c1c;
+  --status-pending-bg:  #dbeafe; --status-pending-text:  #1d4ed8;
+  --status-dead-bg:     #f1f5f9; --status-dead-text:     #475569;
+}
+
+/* ── Dark theme ── */
+[data-theme="dark"] {
+  --bg-app:        #0f172a;
+  --bg-card:       #1e293b;
+  --bg-sidebar:    #131c2e;
+  --bg-input:      #1e293b;
+  --bg-row-hover:  #263348;
+  --bg-tag:        #263348;
+
+  --border:        #334155;
+  --border-inner:  #263348;
+  --border-sidebar:#1e3a5f;
+
+  --text-heading:  #f1f5f9;
+  --text-base:     #e2e8f0;
+  --text-body:     #cbd5e1;
+  --text-nav:      #94a3b8;
+  --text-secondary:#64748b;
+  --text-muted:    #475569;
+
+  --primary-light: #1e2a4a;
+  --primary-border:#3730a3;
+
+  --status-routed-bg:   #14532d; --status-routed-text:   #86efac;
+  --status-hold-bg:     #451a03; --status-hold-text:     #fcd34d;
+  --status-failed-bg:   #450a0a; --status-failed-text:   #fca5a5;
+  --status-pending-bg:  #172554; --status-pending-text:  #93c5fd;
+  --status-dead-bg:     #1e293b; --status-dead-text:     #94a3b8;
+}
+
+html, body, #root {
+  height: 100%;
+  background: var(--bg-app);
+  color: var(--text-body);
+  font-family: var(--font-ui);
+  font-size: 15px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: var(--primary); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+button { cursor: pointer; font-family: var(--font-ui); font-size: 14px; }
+input, select, textarea { font-family: var(--font-ui); font-size: 14px; color: var(--text-base); background: var(--bg-input); }
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg-card); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
+
+/* Hide number input spinners */
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
+input[type=number] { -moz-appearance: textfield; }
+
+/* Shared card utility */
+.pf-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+}
