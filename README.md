@@ -38,7 +38,7 @@ make dev-frontend     # Vite     → http://localhost:5173
 ```
 
 Services:
-- API: http://localhost:8000
+- API: http://127.0.0.1:8000
 - UI: http://localhost:5173
 - RabbitMQ management: http://localhost:15672
 

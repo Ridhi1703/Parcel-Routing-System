@@ -12,10 +12,33 @@ const COLUMNS = [
   { key: 'weight_kg', label: 'Weight', render: (v) => `${Number(v).toFixed(3)} kg` },
   { key: 'value_eur', label: 'Value', render: (v) => `₹${Number(v).toFixed(0)}` },
   { key: 'status', label: 'Status', render: (v) => <Badge status={v} /> },
-  { key: 'routing_decision', label: 'Routed To', render: (v) => v
-    ? <span style={{ background: 'var(--primary-light)', color: 'var(--primary)', padding: '2px 10px', borderRadius: '999px', fontSize: '12px', fontWeight: 600, whiteSpace: 'nowrap' }}>{v}</span>
-    : <span style={{ color: 'var(--text-muted)', fontSize: '12px' }}>—</span>
+  {
+  key: 'route',
+  label: 'Routed To',
+  render: (v, row) => {
+    const route = row.route || row.routing_decision
+
+    return route ? (
+      <span
+        style={{
+          background: 'var(--primary-light)',
+          color: 'var(--primary)',
+          padding: '2px 10px',
+          borderRadius: '999px',
+          fontSize: '12px',
+          fontWeight: 600,
+          whiteSpace: 'nowrap',
+        }}
+      >
+        {route}
+      </span>
+    ) : (
+      <span style={{ color: 'var(--text-muted)', fontSize: '12px' }}>
+        —
+      </span>
+    )
   },
+},
   { key: 'submitted_by_username', label: 'User', render: (v) => v ?? '—' },
   { key: 'created_at', label: 'Submitted', render: (v) => new Date(v).toISOString().slice(0, 16).replace('T', ' ') },
 ]

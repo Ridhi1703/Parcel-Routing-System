@@ -22,6 +22,17 @@ const OPERATOR_OPTIONS = [
   { value: 'neq', label: '≠ not equals' },
 ]
 const ACTION_PRESETS = ['ROUTE_TO', 'INSURANCE_HOLD']
+
+// System/default actions
+const SYSTEM_ACTIONS = ['ROUTE_TO', 'INSURANCE_HOLD']
+
+// Allow target for custom actions
+function actionSupportsTarget(action) {
+  return (
+    action === 'ROUTE_TO' ||
+    !SYSTEM_ACTIONS.includes(action)
+  )
+}
 const TARGET_PRESETS = ['Mail Department', 'Regular Department', 'Heavy Department', 'Secure Route']
 const NUMERIC_FIELDS = new Set(['weight_kg', 'value_eur'])
 const isNumeric = (f) => NUMERIC_FIELDS.has(f)
@@ -287,11 +298,22 @@ function GroupEditView({ rule: initial, onSave, onDiscard }) {
           </div>
           <div>
             <div style={fieldLabel}>Action</div>
-            <SelectOrType presets={ACTION_PRESETS} value={rule.action}
-              onChange={(v) => setRule((r) => ({ ...r, action: v, target: v === 'ROUTE_TO' ? (r.target || TARGET_PRESETS[0]) : undefined }))}
-              style={{ minWidth: '150px' }} />
+            <SelectOrType
+              presets={ACTION_PRESETS}
+              value={rule.action}
+              onChange={(v) =>
+                setRule((r) => ({
+                  ...r,
+                  action: v,
+                  target: actionSupportsTarget(v)
+                    ? (r.target || TARGET_PRESETS[0])
+                    : undefined,
+                }))
+              }
+              style={{ minWidth: '150px' }}
+            />
           </div>
-          {rule.action === 'ROUTE_TO' && (
+          {actionSupportsTarget(rule.action) && (
             <div>
               <div style={fieldLabel}>Target</div>
               <SelectOrType presets={TARGET_PRESETS} value={rule.target || ''}
