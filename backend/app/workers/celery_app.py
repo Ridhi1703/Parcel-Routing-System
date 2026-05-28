@@ -23,16 +23,9 @@ def _broker_url() -> str:
     vhost = os.environ.get("RABBITMQ_VHOST", "/").lstrip("/")
     return f"{scheme}://{user}:{password}@{host}:{port}/{vhost}"
 
-
 def _backend_url() -> str:
-    ssl = "?ssl=require" if os.environ.get("DB_SSL", "false").lower() == "true" else ""
-    user = os.environ.get("DB_USER", "parcels")
-    password = os.environ.get("DB_PASSWORD", "parcels")
-    host = os.environ.get("DB_HOST", "postgres")
-    port = os.environ.get("DB_PORT", "5432")
-    name = os.environ.get("DB_NAME", "parcels")
-    return f"db+postgresql://{user}:{password}@{host}:{port}/{name}{ssl}"
-
+    db_url = os.environ.get("DATABASE_URL", "")
+    return db_url.replace("postgresql+asyncpg://", "db+postgresql://")
 
 celery = Celery(
     "parcel_router",
