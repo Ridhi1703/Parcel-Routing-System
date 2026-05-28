@@ -159,22 +159,38 @@ def route_parcel(
 
         db.add(routing_decision)
 
-       # 6. Dynamic status handling
+        # 6. Dynamic status handling
 
-       # ROUTE_TO decisions should remain ROUTED
-        if result.decision.endswith("Department"):
+        # Explicit action from executor
+        action_type = (
+            result.action_type
+            if hasattr(result, "action_type")
+            else None
+        )
 
-           new_status = "ROUTED"
+        # Route-type decisions remain ROUTED
+        if (
+            result.decision
+            and result.decision.endswith("Department")
+        ):
 
-# Terminal/custom actions
+            new_status = "ROUTED"
+
+        # Custom / terminal action status
+        elif action_type:
+
+            new_status = (
+                action_type.upper()
+                .replace(" ", "_")
+            )
+
+        # Fallback
         else:
 
-           new_status = (
-           result.decision.upper()
-           .replace(" ", "_")
-           )    
-
-        
+            new_status = (
+                result.decision.upper()
+                .replace(" ", "_")
+            )
 
         fallback_value = (
             dynamic_config.fallback
