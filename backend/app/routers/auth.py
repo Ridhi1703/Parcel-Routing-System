@@ -37,17 +37,45 @@ def create_refresh_token(data: dict) -> str:
 
 @router.post("/login", response_model=TokenResponse)
 async def login(
-    body: LoginRequest, response: Response, db: AsyncSession = Depends(get_db)
+    body: LoginRequest,
+    response: Response,
+    db: AsyncSession = Depends(get_db),
 ):
-    result = await db.execute(select(User).where(User.username == body.username))
+    result = await db.execute(
+        select(User).where(User.username == body.username)
+    )
     user = result.scalar_one_or_none()
 
-    if not user or not bcrypt.checkpw(
-        body.password.encode(), user.password_hash.encode()
-    ):
-        raise HTTPException(status_code=401, detail="Invalid credentials")
+    print("USER:", user)
+    print("HASH:", user.password_hash if user else None)
 
-    token_data = {"sub": str(user.id), "username": user.username, "role": user.role}
+    try:
+        valid = False
+
+        if user:
+            valid = bcrypt.checkpw(
+                body.password.encode(),
+                user.password_hash.encode()
+            )
+
+        print("VALID:", valid)
+
+    except Exception as e:
+        print("BCRYPT ERROR:", str(e))
+        raise
+
+    if not user or not valid:
+        raise HTTPException(
+            status_code=401,
+            detail="Invalid credentials"
+        )
+
+    token_data = {
+        "sub": str(user.id),
+        "username": user.username,
+        "role": user.role,
+    }
+
     access_token = create_access_token(token_data)
     refresh_token = create_refresh_token(token_data)
 
@@ -60,6 +88,8 @@ async def login(
     )
 
     return TokenResponse(access_token=access_token)
+
+
 
 
 @router.post("/refresh", response_model=TokenResponse)
