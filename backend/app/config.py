@@ -37,16 +37,16 @@ class Settings(BaseSettings):
 
     # ── Derived URLs (computed, never set directly) ───────────────────────────
     @computed_field
-    @property
-    def database_url(self) -> str:
-        ssl = "?sslmode=require" if self.db_ssl else ""
-        return f"postgresql+asyncpg://{self.db_user}:{self.db_password}@{self.db_host}:{self.db_port}/{self.db_name}{ssl}"
+    @property 
+    def database_url(self) -> str: 
+        ssl = "?ssl=require" if self.db_ssl else "" 
+        return ( f"postgresql+asyncpg://{self.db_user}:{self.db_password}" f"@{self.db_host}:{self.db_port}/{self.db_name}{ssl}" )
 
     @computed_field
-    @property
-    def sync_database_url(self) -> str:
-        ssl = "?sslmode=require" if self.db_ssl else ""
-        return f"postgresql://{self.db_user}:{self.db_password}@{self.db_host}:{self.db_port}/{self.db_name}{ssl}"
+    @property 
+    def sync_database_url(self) -> str: 
+        ssl = "?sslmode=require" if self.db_ssl else "" 
+        return ( f"postgresql://{self.db_user}:{self.db_password}" f"@{self.db_host}:{self.db_port}/{self.db_name}{ssl}" )
 
     @computed_field
     @property
