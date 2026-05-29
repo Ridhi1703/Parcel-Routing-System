@@ -22,6 +22,37 @@
 > A configurable parcel routing platform built with FastAPI, React, RabbitMQ, Celery, and PostgreSQL. Designed to support dynamic business rules, asynchronous processing, auditability, and safe rule evolution.
 
 ---
+## 🌐 Live Demo
+
+### Application
+
+🔗 Frontend: https://parcel-routing-system.vercel.app
+
+🔗 Backend API Docs: https://parcelflow-backend-uen5.onrender.com/docs
+
+---
+
+## 🔑 Demo Credentials
+
+| Username | Password | Role |
+|-----------|-----------|----------|
+| admin | admin123 | Administrator |
+| viewer | viewer123 | Read Only |
+| jsmith | user123 | Standard User |
+
+---
+
+## 🚀 Quick Reviewer Guide
+
+If you're reviewing this project:
+
+1. Login using the credentials above
+2. Create a parcel
+3. View the routing decision
+4. Explore the Rule Management section
+5. Create or modify a rule
+6. Review audit logs and parcel history
+7. Upload a batch CSV for bulk processing
 
 ## 🚀 Highlights
 
