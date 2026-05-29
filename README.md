@@ -1,4 +1,48 @@
-# ParcelFlow – Adaptive Parcel Routing System
+<div align="center">
+
+# 📦 ParcelFlow
+
+### Adaptive Parcel Routing System
+
+[![Python](https://img.shields.io/badge/Python-3.12-blue?style=for-the-badge&logo=python)]()
+[![FastAPI](https://img.shields.io/badge/FastAPI-0.111-green?style=for-the-badge&logo=fastapi)]()
+[![React](https://img.shields.io/badge/React-Frontend-61DAFB?style=for-the-badge&logo=react)]()
+[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Database-336791?style=for-the-badge&logo=postgresql)]()
+[![RabbitMQ](https://img.shields.io/badge/RabbitMQ-Queue-FF6600?style=for-the-badge&logo=rabbitmq)]()
+[![Celery](https://img.shields.io/badge/Celery-Workers-37814A?style=for-the-badge&logo=celery)]()
+
+[![Tests](https://img.shields.io/badge/Tests-25_Passing-success?style=for-the-badge)]()
+[![JWT](https://img.shields.io/badge/Auth-JWT-orange?style=for-the-badge)]()
+[![License](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge)]()
+
+</div>
+
+---
+
+> A configurable parcel routing platform built with FastAPI, React, RabbitMQ, Celery, and PostgreSQL. Designed to support dynamic business rules, asynchronous processing, auditability, and safe rule evolution.
+
+---
+
+## 🚀 Highlights
+
+✅ Dynamic Rule Engine
+
+✅ Rule Versioning
+
+✅ RabbitMQ + Celery Processing
+
+✅ Audit Logging
+
+✅ Dead Letter Queue Support
+
+✅ JWT Authentication
+
+✅ Role-Based Access Control
+
+✅ Batch Processing
+
+✅ Automated Testing
+
 
 ## Overview
 
