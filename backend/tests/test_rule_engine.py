@@ -149,7 +149,33 @@ class TestRuleEngine:
         config = get_config()
         decision, _ = evaluate_rules(config, {"weight_kg": 1.001, "value_eur": 50})
         assert decision == "Regular Department"
+    
+    def test_boundary_exactly_10kg(self):
+        config = get_config()
 
+        decision, _ = evaluate_rules(
+              config,
+            {
+            "weight_kg": 10.0,
+            "value_eur": 50
+             }
+        )
+
+        assert decision == "Regular Department"
+
+
+    def test_boundary_just_over_10kg(self):
+        config = get_config()
+
+        decision, _ = evaluate_rules(
+             config,
+            {
+            "weight_kg": 10.001,
+            "value_eur": 50
+             }
+        )
+
+        assert decision == "Heavy Department"
 
 # ── Multi-condition AND logic ─────────────────────────────────────────────────
 class TestMultiConditionAND:
