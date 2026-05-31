@@ -4,6 +4,9 @@ from app.services.rules.contracts import RuleResult
 
 class BaseRule(ABC):
 
+    priority: int = 100     
+    sets_decision: bool = False  
+
     @abstractmethod
     def evaluate(self, parcel: dict) -> RuleResult:
         pass

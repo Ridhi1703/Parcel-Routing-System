@@ -2,6 +2,9 @@ from app.services.rules.base import BaseRule
 
 
 class InsuranceRule(BaseRule):
+    
+    priority = 1             
+    sets_decision = True 
 
     def evaluate(self, parcel: dict):
 
